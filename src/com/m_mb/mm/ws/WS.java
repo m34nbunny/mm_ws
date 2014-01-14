@@ -148,7 +148,9 @@ public class WS {
 		return item;
 	}
 	
-	
+	/*
+	 * This method is designed to read single simple types that are not complex objects
+	 */
 	@SuppressWarnings("unchecked")
 	public static <T> T ReadSimple(Class<T> type, SoapSerializationEnvelope envelope) throws Exception {
 		Object obj = envelope.getResponse();
@@ -158,6 +160,9 @@ public class WS {
 		return (T)result.getValue();
 	}
 	
+	/*
+	 * This method is designed to read and bind complex objects out of the envelope.
+	 */
 	public static <T> T Read(Class<T> type, SoapSerializationEnvelope envelope) throws Exception {
 		Object obj = envelope.getResponse();
 		List<Field> objFields = GetDMFieldsOnly(type.getFields());
@@ -169,6 +174,9 @@ public class WS {
 		return nObj;
 	}
 	
+	/*
+	 * This method is designed to return a list of objects back from an envelope.
+	 */
 	@SuppressWarnings({ "unchecked" })
 	public static <T> List<T> ReadCollection(Class<T> type, SoapSerializationEnvelope envelope) throws Exception {
 		Object obj = envelope.getResponse();
